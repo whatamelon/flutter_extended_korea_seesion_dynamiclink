@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "657133873419",
+    "project_id": "dynamiclinktest-6a67a",
+    "storage_bucket": "dynamiclinktest-6a67a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:657133873419:android:bc4e9b5a1575f7799ada0e",
+        "android_client_info": {
+          "package_name": "com.session.dlt"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "657133873419-bsc3i6ubrpfd77cqgbl620u00ucedt5i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZOPzJ4IxSDNKKd5AZMBdaJ1Q9OBcBYL8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "657133873419-bsc3i6ubrpfd77cqgbl620u00ucedt5i.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "657133873419-ugfcle2j6so4m7vskn59cpttc5g4ncc8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.session.dlt",
+                "app_store_id": "1476347043"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
