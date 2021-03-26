@@ -1,11 +1,11 @@
-import 'package:dlt/corePage.dart';
+import 'package:dlt/CorePage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = new GlobalKey<NavigatorState>();
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
@@ -16,8 +16,7 @@ class MyApp extends StatefulWidget {
   _MyAppState createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp> with WidgetsBindingObserver{
-
+class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
@@ -27,46 +26,37 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver{
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    if(state == AppLifecycleState.resumed) {
+    if (state == AppLifecycleState.resumed) {
       print('');
       print('');
       print('------ 앱 resumed ------');
       print('');
       print('');
-      FirebaseDynamicLinks.instance.onLink(onSuccess: (dynamiclink) async{
+      FirebaseDynamicLinks.instance.onLink(onSuccess: (dynamiclink) async {
         var deeplink = dynamiclink?.link;
 
         String realDlink = deeplink.toString().replaceAll('%3D', '=');
         print(realDlink);
 
         int lastIdx = realDlink.lastIndexOf('/');
-        String firstEdit = realDlink.substring(lastIdx+2);
-
+        String firstEdit = realDlink.substring(lastIdx + 2);
 
         List<dynamic> splitList = firstEdit.split("?");
-        Map<String,dynamic> _newMaps = {};
+        Map<String, dynamic> _newMaps = {};
 
-        for(var i = 0; i < splitList.length; i++) {
+        for (var i = 0; i < splitList.length; i++) {
           _newMaps[splitList[i].split("=")[0]] = splitList[i].split("=")[1];
         }
-        print(_newMaps);
 
-        if(_newMaps == null) {
-        } else if(_newMaps.length > 0) {
-
-          navigatorKey.currentState.pushAndRemoveUntil(MaterialPageRoute(builder: (context) => CorePage(data: _newMaps,)), (Route<dynamic> route) => false);
-
-        } else {
-          print('else value');
-        }
-
+        navigatorKey.currentState.pushAndRemoveUntil(
+            MaterialPageRoute(
+                builder: (context) => CorePage(
+                      data: _newMaps,
+                    )),
+            (route) => false);
       });
     }
-
   }
-
-
-
 
   @override
   void dispose() {
@@ -74,65 +64,55 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver{
     super.dispose();
   }
 
-
-  void getDynamicLink() async{
-    final PendingDynamicLinkData data = await FirebaseDynamicLinks.instance.getInitialLink();
+  void getDynamicLink() async {
+    final PendingDynamicLinkData data =
+        await FirebaseDynamicLinks.instance.getInitialLink();
     final Uri initialLink = data?.link;
 
     String realIlink = initialLink.toString().replaceAll('%3D', '=');
     print(realIlink);
 
     int lastIdx = realIlink.lastIndexOf('/');
-    String firstEdit = realIlink.substring(lastIdx+2);
+    String firstEdit = realIlink.substring(lastIdx + 2);
 
-    if(initialLink != null) {
+    if (initialLink != null) {
       List<dynamic> splitList = firstEdit.split("?");
-      Map<String,dynamic> _newMaps = {};
+      Map<String, dynamic> _newMaps = {};
 
-      for(var i = 0; i < splitList.length; i++) {
+      for (var i = 0; i < splitList.length; i++) {
         _newMaps[splitList[i].split("=")[0]] = splitList[i].split("=")[1];
       }
-
-      if(_newMaps == null) {
-      } else if(_newMaps.length > 0) {
-        navigatorKey.currentState.pushAndRemoveUntil(MaterialPageRoute(builder: (context) => CorePage(data: _newMaps,)), (Route<dynamic> route) => false);
-      } else {}
-
+      navigatorKey.currentState.pushAndRemoveUntil(
+          MaterialPageRoute(
+              builder: (context) => CorePage(
+                    data: _newMaps,
+                  )),
+          (route) => false);
     } else {
-      FirebaseDynamicLinks.instance.onLink(onSuccess: (dynamiclink) async{
+      FirebaseDynamicLinks.instance.onLink(onSuccess: (dynamiclink) async {
         var deeplink = dynamiclink?.link;
 
         String realDlink = deeplink.toString().replaceAll('%3D', '=');
         print(realDlink);
 
         int lastIdx = realDlink.lastIndexOf('/');
-        String firstEdit = realDlink.substring(lastIdx+2);
-
+        String firstEdit = realDlink.substring(lastIdx + 2);
 
         List<dynamic> splitList = firstEdit.split("?");
-        Map<String,dynamic> _newMaps = {};
+        Map<String, dynamic> _newMaps = {};
 
-        for(var i = 0; i < splitList.length; i++) {
+        for (var i = 0; i < splitList.length; i++) {
           _newMaps[splitList[i].split("=")[0]] = splitList[i].split("=")[1];
         }
-        print(_newMaps);
-
-        if(_newMaps == null) {
-        } else if(_newMaps.length > 0) {
-
-          navigatorKey.currentState.pushAndRemoveUntil(MaterialPageRoute(builder: (context) => CorePage(data: _newMaps,)), (Route<dynamic> route) => false);
-
-        } else {
-          print('else value');
-        }
-
-
+        navigatorKey.currentState.pushAndRemoveUntil(
+            MaterialPageRoute(
+                builder: (context) => CorePage(
+                      data: _newMaps,
+                    )),
+            (route) => false);
       });
     }
-
-
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -143,11 +123,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver{
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(),
-      navigatorKey: navigatorKey,
     );
   }
-
-
 }
 
 class MyHomePage extends StatefulWidget {
@@ -156,8 +133,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
-
   @override
   void initState() {
     super.initState();
@@ -166,26 +141,25 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Firebase Dynamic Link'),
-      ),
-      body: _buildBody()
-    );
+        appBar: AppBar(
+          title: Text('Firebase Dynamic Link'),
+        ),
+        body: _buildBody());
   }
 
- Widget _buildBody() {
+  Widget _buildBody() {
     return Center(
       child: Column(
         children: [
-          SizedBox(height:  100,),
+          SizedBox(
+            height: 100,
+          ),
           Text('Main Page'),
-          SizedBox(height:  50,),
+          SizedBox(
+            height: 50,
+          ),
         ],
       ),
     );
- }
-
+  }
 }
-
-
-
