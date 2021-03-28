@@ -1,17 +1,11 @@
-# dlt
-
-dynamic link test
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
 # flutter_extended_korea_seesion_dynamiclink
+
+### 발표 세션에서 딥링크에 관한 내용이 아니고 발표 시간을 맞추느라 작업하지 않은 부분이 있습니다.
+
+firebase core 라이브러리 install과 firebase console에서 프로젝트 설정을 해주는 부분입니다.
+
+안드로이드 -> sha256 or sha1지문을 등록해주셔야 합니다.
+
+IOS -> 앱을 릴리즈할때 사용하신 팀ID와 앱이 등록된 앱스토어 ID가 적용되어야합니다.
+
+미리 사전고지 하지 않은점 죄송합니다ㅠㅠ
